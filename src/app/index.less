@@ -1,0 +1,86 @@
+@import url(http://fonts.googleapis.com/css?family=Raleway:100,400,700);
+
+body {
+	font-family:Raleway, Open Sans, Droid Sans, Roboto,arial, sans-serif;
+	font-size: 20px;
+}
+
+.browsehappy {
+  margin: 0.2em 0;
+  background: #ccc;
+  color: #000;
+  padding: 0.2em 0;
+}
+
+.letter {
+	padding: 40px;
+	margin: 50px auto;
+
+	width:700px;
+	min-height:600px;
+	
+	border-radius:5px;
+	box-shadow: 0 12px 30px rgba(0,0,0,.2);
+	border:1px solid rgba(255,255,255,.3);
+	
+	box-sizing: border-box;
+	
+	text-shadow:0 1px 1px rgba(0,0,0,.4);
+	display: flex;
+
+	textarea {
+		width: 100%;
+		
+		border: none;
+
+		resize: none;
+
+		&:focus {
+		    outline: none !important;
+		    border: none;
+		    box-shadow: none;
+		}
+
+		&#meetTextarea{
+			height: 175px;
+		}
+	}
+
+	.photos{
+		.photo{
+			display: inline-block;
+			opacity: 0; 
+			padding: 15px;
+		}
+
+		#photo1 {
+			width: 45%;
+			transition: opacity 3s ease;
+		}
+
+		#photo2 {
+			width: 52%;
+			transition: opacity 1.5s ease;
+		}
+
+		#photo3 {
+			width: 51%;
+			transition: opacity 0.75s ease;
+		}
+
+		#photo4 {
+			width: 43%;
+			transition: opacity 3s ease;
+		}
+
+		#photo5 {
+			width: 57%;
+			transition: opacity 2.2s ease;
+		}
+	}
+}
+
+/* Do not remove this comments bellow. It's the markers used by gulp-inject to inject
+   all your less files automatically */
+// injector
+// endinjector
