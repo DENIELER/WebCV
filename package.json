@@ -49,7 +49,9 @@
     "chalk": "~0.5.1",
     "protractor": "~1.7.0",
     "uglify-save-license": "~0.4.1",
-    "wrench": "~1.5.8"
+    "wrench": "~1.5.8",
+    "js-yaml": "~3.3.1",
+    "gulp-replace-task": "~0.2.1"
   },
   "engines": {
     "node": ">=0.10.0"

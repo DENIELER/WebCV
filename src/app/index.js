@@ -6,6 +6,11 @@ import TextTypeCtrl from '../app/components/texttype/texttype.controller';
 import TextTypeDirective from '../app/components/texttype/texttype.directive';
 
 angular.module('denieler', ['ngAnimate', 'ngCookies', 'ngTouch', 'ngSanitize', 'ui.router'])
+
+  //--- CONFIG
+  .constant('MEET_TEXT', ___meet_text)
+  //---
+
   .controller('MainCtrl', MainCtrl)
   //.controller('TextTypeCtrl', TextTypeCtrl)
   .directive('textType', TextTypeDirective.directiveFactory)

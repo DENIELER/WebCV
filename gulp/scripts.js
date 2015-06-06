@@ -43,10 +43,14 @@ module.exports = function(options) {
   }
 
   gulp.task('scripts', function () {
+    gulp.start('config');
+    
     return webpack(false);
   });
 
   gulp.task('scripts:watch', ['scripts'], function (callback) {
+    gulp.start('config');
+
     return webpack(true, callback);
   });
 };

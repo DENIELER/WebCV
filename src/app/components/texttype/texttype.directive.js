@@ -3,7 +3,7 @@
 import TypeTypeLib from '../../../vendors/jquery.typetype.min';
 
 class TextTypeDirective {
-	constructor ($timeout) {
+	constructor ($timeout, MEET_TEXT) {
 
 		this.templateUrl = 'app/components/texttype/texttype.html'; 
         this.restrict = 'E'; 
@@ -11,6 +11,7 @@ class TextTypeDirective {
         this.scope = {} 
 
         this.$timeout = $timeout;
+        this.MEET_TEXT = MEET_TEXT;
     } 
 
     link(scope, element) { 
@@ -20,20 +21,18 @@ class TextTypeDirective {
     } 
 
     startTyping (element) {
+    	var MEET_TEXT = TextTypeDirective.instance.MEET_TEXT;
+
     	return new Promise(
 			function (resolve, reejct) {
 
 		        element
 		        .find('#meetTextarea')
 		        .focus()
-		        .typetype('Hi! :)')
-			    .typetype('\n\nMy name Daniel Ostapenko. And I am - web developer.' + 
-			    	'\n\nIt\'s me:\n', {
-			    	t: 70,
-			    	e: 0.04,
-			    	// t: 10,
-			    	// e: 0,
-
+		        .typetype(MEET_TEXT.text, {
+			    	t: MEET_TEXT.time,
+			    	e: MEET_TEXT.errors,
+			    	
 			    	callback: function () {
 			    		resolve();
 			    	}
@@ -43,28 +42,16 @@ class TextTypeDirective {
 	}
 
     showPhotos (element) {
-    	element.find('#photo1')
-    	.css('opacity', '1');
-
-    	element.find('#photo2')
-    	.css('opacity', '1');
-
-    	element.find('#photo3')
-    	.css('opacity', '1');
-
-    	element.find('#photo4')
-    	.css('opacity', '1');
-
-    	element.find('#photo5')
+    	element.find('#photo1, #photo2, #photo3, #photo4, #photo5')
     	.css('opacity', '1');
     }
 
-	static directiveFactory($timeout){
-		TextTypeDirective.instance = new TextTypeDirective($timeout);
+	static directiveFactory($timeout, MEET_TEXT){
+		TextTypeDirective.instance = new TextTypeDirective($timeout, MEET_TEXT);
 		return TextTypeDirective.instance;
 	}
 }
 
-TextTypeDirective.directiveFactory.$inject = ['$timeout'];
+TextTypeDirective.directiveFactory.$inject = ['$timeout', 'MEET_TEXT'];
 
 export default TextTypeDirective;

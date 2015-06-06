@@ -1,0 +1,22 @@
+# CV text
+
+default: &default
+  meet:
+    text: |
+      Hi! :)
+      (Experience)
+      (Qualities)
+      (Projects)
+      (Contacts, profiles)
+    time: 70
+    errors: 0.04
+  skills:
+    text: |
+      (Skills)
+    time: 70
+    errors: 0.04
+  education:
+    text: |
+      (Education)
+    time: 70
+    errors: 0.04

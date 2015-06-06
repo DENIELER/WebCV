@@ -24,60 +24,68 @@ body {
 	border:1px solid rgba(255,255,255,.3);
 	
 	box-sizing: border-box;
-	
 	text-shadow:0 1px 1px rgba(0,0,0,.4);
-	display: flex;
+	
+	.content {
+		text-shadow: none;
+		display: flex;
+		flex-direction: column;
 
-	textarea {
-		width: 100%;
-		
-		border: none;
+		textarea {
+			width: 100%;
+			border: none;
+			resize: none;
 
-		resize: none;
+			&:focus {
+			    outline: none !important;
+			    border: none;
+			    box-shadow: none;
+			}
 
-		&:focus {
-		    outline: none !important;
-		    border: none;
-		    box-shadow: none;
+			&#meetTextarea{
+				height: 175px;
+			}
 		}
 
-		&#meetTextarea{
-			height: 175px;
+		.photos{
+			.photo{
+				display: inline-block;
+				opacity: 0; 
+				padding: 15px;
+			}
+
+			#photo1 {
+				width: 45%;
+				transition: opacity 3s ease;
+			}
+
+			#photo2 {
+				width: 52%;
+				transition: opacity 1.5s ease;
+			}
+
+			#photo3 {
+				width: 51%;
+				transition: opacity 0.75s ease;
+			}
+
+			#photo4 {
+				width: 43%;
+				transition: opacity 3s ease;
+			}
+
+			#photo5 {
+				width: 57%;
+				transition: opacity 2.2s ease;
+			}
 		}
 	}
+}
 
-	.photos{
-		.photo{
-			display: inline-block;
-			opacity: 0; 
-			padding: 15px;
-		}
-
-		#photo1 {
-			width: 45%;
-			transition: opacity 3s ease;
-		}
-
-		#photo2 {
-			width: 52%;
-			transition: opacity 1.5s ease;
-		}
-
-		#photo3 {
-			width: 51%;
-			transition: opacity 0.75s ease;
-		}
-
-		#photo4 {
-			width: 43%;
-			transition: opacity 3s ease;
-		}
-
-		#photo5 {
-			width: 57%;
-			transition: opacity 2.2s ease;
-		}
-	}
+@keyframes fade {
+	0%   {opacity:0;}
+	50%  {opacity:1;}
+	100% {opacity:0;}
 }
 
 /* Do not remove this comments bellow. It's the markers used by gulp-inject to inject

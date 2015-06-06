@@ -10,6 +10,8 @@ function isOnlyChange(event) {
 module.exports = function(options) {
   gulp.task('watch', ['scripts:watch', 'inject'], function () {
 
+    gulp.start('config');
+
     gulp.watch([options.src + '/*.html', 'bower.json'], ['inject']);
 
     gulp.watch([
@@ -20,6 +22,7 @@ module.exports = function(options) {
         gulp.start('styles');
       } else {
         gulp.start('inject');
+        gulp.start('config');
       }
     });
 
