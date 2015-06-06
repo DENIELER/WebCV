@@ -1,7 +1,5 @@
 'use strict';
 
-import TypeTypeLib from '../../../vendors/jquery.typetype.min';
-
 class TextTypeDirective {
 	constructor ($timeout, MEET_TEXT) {
 

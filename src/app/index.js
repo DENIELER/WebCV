@@ -1,20 +1,19 @@
 'use strict';
 
-import ScrollLib from '../vendors/angular-scroll.min';
-
 import MainCtrl from './main/main.controller';
 
 import TextTypeCtrl from '../app/components/texttype/texttype.controller';
 import TextTypeDirective from '../app/components/texttype/texttype.directive';
 
+var config = require('./config');
+
+//external
+var typeTypeLib = require('../vendors/jquery.typetype.min');
+var scrollLib = require('../vendors/angular-scroll.min');
+
 angular.module('denieler', ['ngAnimate', 'ngCookies', 'ngTouch', 'ngSanitize', 'ui.router', 'duScroll'])
 
-  //--- CONFIG
-  .constant('MEET_TEXT', ___meet_text)
-  //---
-
   .controller('MainCtrl', MainCtrl)
-  //.controller('TextTypeCtrl', TextTypeCtrl)
   .directive('textType', TextTypeDirective.directiveFactory)
 
   .config(function ($stateProvider, $urlRouterProvider) {
@@ -28,3 +27,5 @@ angular.module('denieler', ['ngAnimate', 'ngCookies', 'ngTouch', 'ngSanitize', '
     $urlRouterProvider.otherwise('/');
   })
 ;
+
+config();

@@ -10,7 +10,6 @@ module.exports = function(options) {
     var webpackOptions = {
       watch: watch,
       module: {
-        preLoaders: [{ test: /\.js$/, exclude: /node_modules/, loader: 'jshint-loader'}],
         loaders: [{ test: /\.js$/, exclude: /node_modules/, loader: 'babel-loader'}]
       },
       output: { filename: 'index.js' }
@@ -33,24 +32,23 @@ module.exports = function(options) {
       browserSync.reload();
       if(watch) {
         watch = false;
+
+        gulp.start('config')
         callback();
       }
     };
 
     return gulp.src(options.src + '/app/index.js')
       .pipe($.webpack(webpackOptions, null, webpackChangeHandler))
-      .pipe(gulp.dest(options.tmp + '/serve/app'));
+      .pipe(gulp.dest(options.tmp + '/serve/app'))
+      .on('end', function() { gulp.start('config'); });
   }
 
   gulp.task('scripts', function () {
-    gulp.start('config');
-    
     return webpack(false);
   });
 
   gulp.task('scripts:watch', ['scripts'], function (callback) {
-    gulp.start('config');
-
     return webpack(true, callback);
   });
 };
