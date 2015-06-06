@@ -3,13 +3,13 @@
 default: &default
   meet:
     text: |
-      Hi! :)
-      (Experience)
-      (Qualities)
-      (Projects)
-      (Contacts, profiles)
-    time: 70
-    errors: 0.04
+      Hi! I'm glad to meet you :)
+      
+      So, as you know, I want to work in your company. And I'll try to prove that I am exactly who you need.
+      
+      Sure... it's me
+    time: 10
+    errors: 0.00
   skills:
     text: |
       (Skills)
@@ -18,5 +18,25 @@ default: &default
   education:
     text: |
       (Education)
+    time: 70
+    errors: 0.04
+  experience:
+    text: |
+      (Experience)
+    time: 70
+    errors: 0.04
+  qualities:
+    text: |
+      (Qualities)
+    time: 70
+    errors: 0.04
+  projects:
+    text: |
+      (Projects)
+    time: 70
+    errors: 0.04
+  contacts:
+    text: |
+      (Contacts, profiles)
     time: 70
     errors: 0.04

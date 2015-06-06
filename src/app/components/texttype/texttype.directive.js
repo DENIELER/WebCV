@@ -26,6 +26,8 @@ class TextTypeDirective {
     	return new Promise(
 			function (resolve, reejct) {
 
+				element.scrollTop(0, 500);
+
 		        element
 		        .find('#meetTextarea')
 		        .focus()
@@ -34,6 +36,10 @@ class TextTypeDirective {
 			    	e: MEET_TEXT.errors,
 			    	
 			    	callback: function () {
+			    		element
+		        		.find('#meetTextarea')
+		        		.attr('readonly', 'readonly');
+
 			    		resolve();
 			    	}
 			    });
@@ -42,8 +48,11 @@ class TextTypeDirective {
 	}
 
     showPhotos (element) {
-    	element.find('#photo1, #photo2, #photo3, #photo4, #photo5')
+    	element.find('#photo1')
     	.css('opacity', '1');
+
+    	var scrollDownFirst = angular.element(document.getElementById('scroll-down-first'));
+    	element.scrollToElement(scrollDownFirst, 0, 500);
     }
 
 	static directiveFactory($timeout, MEET_TEXT){
