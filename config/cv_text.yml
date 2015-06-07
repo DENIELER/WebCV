@@ -12,9 +12,11 @@ default: &default
     errors: 0.00
   skills:
     text: |
-      (Skills)
-    time: 70
-    errors: 0.04
+      I'm working as a developer for about 7 years. I've started my carrier from .NET technologies: ASP.NET/C#, ASP.NET MVC/C#, etc.
+      
+      About 3 years ago I've focused on Front-End technologies and truly admire them and still enjoy :) This time I've been part of different teams as Front-End developer.
+    time: 10
+    errors: 0.00
   education:
     text: |
       (Education)

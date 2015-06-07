@@ -30,10 +30,11 @@ module.exports = function(options) {
         version: false
       }));
       browserSync.reload();
+
+      gulp.start('config');
+      
       if(watch) {
         watch = false;
-
-        gulp.start('config')
         callback();
       }
     };

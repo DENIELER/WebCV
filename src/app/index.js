@@ -2,8 +2,10 @@
 
 import MainCtrl from './main/main.controller';
 
-import TextTypeCtrl from '../app/components/texttype/texttype.controller';
-import TextTypeDirective from '../app/components/texttype/texttype.directive';
+import ScrollService from '../app/services/scroll';
+
+import MeetDirective from '../app/components/meet/meet.directive';
+import SkillsDirective from '../app/components/skills/skills.directive';
 
 var config = require('./config');
 
@@ -11,10 +13,15 @@ var config = require('./config');
 var typeTypeLib = require('../vendors/jquery.typetype.min');
 var scrollLib = require('../vendors/angular-scroll.min');
 
-angular.module('denieler', ['ngAnimate', 'ngCookies', 'ngTouch', 'ngSanitize', 'ui.router', 'duScroll'])
+angular.module('denieler', ['ngAnimate', 'ngCookies', 'ngTouch', 'ngSanitize', 
+  'ui.router', 'duScroll'])
 
   .controller('MainCtrl', MainCtrl)
-  .directive('textType', TextTypeDirective.directiveFactory)
+  
+  .service('ScrollService', ScrollService.serviceFactory)
+
+  .directive('meet', MeetDirective.directiveFactory)
+  .directive('skills', SkillsDirective.directiveFactory)
 
   .config(function ($stateProvider, $urlRouterProvider) {
     $stateProvider

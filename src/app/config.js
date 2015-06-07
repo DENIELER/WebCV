@@ -6,6 +6,7 @@ module.exports = function () {
 
 	  //--- CONFIG
 	  .constant('MEET_TEXT', ___meet_text)
+	  .constant('SKILLS_TEXT', ___skills_text)
 	  //---
 	;
 
