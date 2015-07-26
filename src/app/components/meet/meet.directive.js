@@ -17,13 +17,13 @@ class MeetDirective {
 
     link(scope, element) { 
     	var self = MeetDirective.instance;
-    	self.scope = scope;
+    	self.$scope = scope;
 
-		self.$timeout(() => self.startTyping(element), 1000)
+        self.$timeout(() => self.startTyping(element), 1000)
 		.then(() => self.showPhotos(element))
-		.then(() => {
-			self.$timeout(() => { self.scope.skills = true; }, 500)
-		});
+        .then(() => self.scroll.scrollTo('meetTextarea', 0, 500))
+        .then(() => self.showScrollIcon(element))
+		.then(() => self.$scope.$emit('meetAnimationFinished'));
     } 
 
     startTyping (element) {
@@ -33,9 +33,6 @@ class MeetDirective {
 
     	return new Promise(
 			function (resolve, reejct) {
-
-				self.scroll.scrollTop();
-				
 		        element.find('#meetTextarea')
 		        .focus()
 		        .typetype(MEET_TEXT.text, {
@@ -60,9 +57,14 @@ class MeetDirective {
 
     	firstPhoto
     	.css('opacity', '1');
-
-    	self.$timeout(() => { self.scope.skills = true; }, 1500);
-    	return this.scroll.scrollTo('scroll-down-first', firstPhoto.height() + 200);
+    }
+  
+    showScrollIcon (element) {
+        var self = this;
+        
+        var scrollDownIconContainer = element.find('#meetScrollIcon');
+        scrollDownIconContainer
+        .css('opacity', '1');
     }
 
 	static directiveFactory($timeout, MEET_TEXT, ScrollService){

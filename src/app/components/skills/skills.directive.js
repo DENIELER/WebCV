@@ -10,14 +10,34 @@ class SkillsDirective {
 
         this.$timeout = $timeout;
         this.SKILLS_TEXT = SKILLS_TEXT;
+      
+        this.constants = {
+          moduleId: '#skills',
+          textareaId: '#skillsTextarea',
+          
+          events: {
+            start: 'startSkillsAnimation'
+          }
+        };
     } 
 
     link(scope, element) { 
     	var self = SkillsDirective.instance;
-
-        self.$timeout(() => self.startTyping(element), 1000);
+        self.$scope = scope;
+        self.element = element;
+        
+        self.$scope.$on(self.constants.events.start, function () {
+          
+          self.showSkillsModule();
+          
+          self.$timeout(() => self.startTyping(), 1000);
+        });
     } 
 
+    showSkillsModule () {
+      this.element.css('opacity', '1');
+    }
+  
     startTyping (element) {
         var self = this;
 
@@ -26,7 +46,7 @@ class SkillsDirective {
         return new Promise(
             function (resolve, reejct) {
 
-                element.find('#skillsTextarea')
+                self.element.find(self.constants.textareaId)
                 //.focus()
                 .typetype(SKILLS_TEXT.text, {
                     t: SKILLS_TEXT.time,

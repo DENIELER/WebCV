@@ -8,23 +8,30 @@
 @import '../styles/meet';
 @import '../styles/skills';
 
-@import '../styles/onepagescroll';
+.scroll-icon-container {
+  display: flex;
+  justify-content: center;
+  
+  opacity: 0;
+}
 
-.scroll-down {
-	align-self: center;
-
+.icon-circle-down {
 	margin-top: 50px;
+  
+    height: 60px;
 	width: 60px;
-
-
-	opacity: 0.2;
+  
+    color: red;
+  
+	opacity: 0.1;
+  
 	animation: scroll-down-fade 4s ease-in;
 	animation-iteration-count: infinite;
 }
 
 @keyframes scroll-down-fade {
 	0%   {opacity:0;}
-	50%  {opacity:0.2;}
+	50%  {opacity:0.1;}
 	100% {opacity:0;}
 }
 

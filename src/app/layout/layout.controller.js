@@ -1,18 +1,15 @@
 'use strict';
 
 class LayoutCtrl {
-  constructor ($scope, $document, $window, $timeout) {
-  	this.$document = $document;  	
-	this.$scope = $scope;
+  constructor ($scope, $timeout, ScrollService, ScrollTiming) {
+  	this.$scope = $scope;
+    this.scroll = ScrollService;
     
-    $timeout(function () {
-      $('.letter').onepage_scroll({
-        pagination: false
-      });
-    });
+    this.scroll.preventScroll();
+    $timeout(() => this.scroll.scrollTop(ScrollTiming.top));
   }
 }
 
-LayoutCtrl.$inject = ['$scope', '$document', '$window', '$timeout'];
+LayoutCtrl.$inject = ['$scope', '$timeout', 'ScrollService', 'ScrollTiming'];
 
 export default LayoutCtrl;

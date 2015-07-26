@@ -1,33 +1,26 @@
 'use strict';
 
 class MainCtrl {
-  constructor ($scope, $document, $window, $timeout) {
-  	this.$window = $window;
-	this.$document = $document;  	
-	this.$timeout = $timeout;
-  	this.$scope = $scope;
-
-   	this.$scope.skills = false; 
-
-   	//this.$document.bind('scroll', this.scrollHandler.bind(this));
+  constructor ($scope, $document, $timeout, ScrollManagerService) {
+    var self = this;
+    
+  	self.$document = $document;
+    self.$timeout = $timeout;
+  	self.$scope = $scope;
+    
+    self.scrollManager = ScrollManagerService;
+    
+    self.$scope.$on('meetAnimationFinished', function () {
+      self.$timeout(() => {
+        self.scrollManager.waitForScroll(() => {
+          console.info('startSkillsAnimation');
+          self.$scope.$broadcast('startSkillsAnimation');
+        });
+      }, 500);
+    });
   }
-
-//  scrollHandler () {
-//  	var self = this;
-//
-//	  	if(self.$scope.skills) {
-//
-//	  		if(self.prevTop < self.$document.scrollTop()) {
-//	  			self.scroll.scrollTo('skills', 0, 500);
-//	  		} else {
-//	  			self.scroll.scrollTop(500);
-//	  		}
-//	  	}
-//
-//  	self.prevTop = self.$document.scrollTop();
-//  }
 }
 
-MainCtrl.$inject = ['$scope', '$document', '$window', '$timeout'];
+MainCtrl.$inject = ['$scope', '$document', '$timeout', 'ScrollManagerService'];
 
 export default MainCtrl;
