@@ -15,15 +15,14 @@ var config = require('./config');
 var typeTypeLib = require('../vendors/jquery.typetype.min');
 var scrollLib = require('../vendors/angular-scroll.min');
 
-angular.module('denieler', ['ngAnimate', 'ngCookies', 'ngTouch', 'ngSanitize', 
-  'ui.router', 'duScroll'])
+angular.module('denieler', ['ngAnimate', 'ngCookies', 'ngTouch', 'ngSanitize', 'ui.router', 'duScroll'])
 
   .controller('MainCtrl', MainCtrl)
   .controller('LayoutCtrl', LayoutCtrl)
   
   .service('ScrollService', ScrollService)
   .service('ScrollManagerService', ScrollManager)
-
+  
   .directive('meet', MeetDirective.directiveFactory)
   .directive('skills', SkillsDirective.directiveFactory)
 

@@ -1,5 +1,7 @@
 'use strict';
 
+import Chain from '../services/chain';
+
 class MainCtrl {
   constructor ($scope, $document, $timeout, ScrollManagerService) {
     var self = this;
@@ -10,8 +12,16 @@ class MainCtrl {
     
     self.scrollManager = ScrollManagerService;
     
-    self.waitEvent('meetAnimationFinished')
-    .waitScrollToElement('skills');
+    var chain = new Chain(this.$scope);
+    
+    chain.wait('meetAnimationFinished')
+    .wait(self.scrollManager.waitForScroll, self.scrollManager)
+    .exec(() => { console.log('Fire2'); })
+    .wait('skillsAnimationFinished')
+    .exec(() => { console.log('Fire3'); })
+    .run();
+//    .wait('skills')
+//    .exec(() => { console.log('Fire2'); });
 //    .execEvent('startSkillsAnimation')
 //    .waitEvent('skillsAnimationFinished')
 //    .waitScrollToElement('beginning')
@@ -27,30 +37,6 @@ class MainCtrl {
 //        });
 //      }, 500);
 //    });
-  }
-  
-  waitEvent (eventName) {
-    var self = this;
-    
-    function waitScrollToElement (elementId) {
-      console.log('Hey! Handler ' + elementId);
-      
-      handler = function () {
-        console.log('Modified handler');
-      }
-    }
-    
-    function handler () {
-      console.log('Hey!');
-      
-      waitScrollToElement();
-    }
-    
-    self.$scope.$on(eventName, handler);
-    
-    return {
-      waitScrollToElement: waitScrollToElement
-    };
   }
 }
 
