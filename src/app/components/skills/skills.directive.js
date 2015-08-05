@@ -14,6 +14,7 @@ class SkillsDirective {
         this.constants = {
           moduleId: '#skills',
           textareaId: '#skillsTextarea',
+					textarea_net_Id: '#skillsTextarea_Net',
 
           events: {
             start: 'startSkillsAnimation',
@@ -32,6 +33,8 @@ class SkillsDirective {
       self.showSkillsModule();
 
       self.$timeout(() => self.startTyping(), 1000)
+				.then(() => self.startTyping_NET(), 1000)
+				.then(() => self.showScrollIcon(element))
 				.then(() => self.$scope.$emit(self.constants.events.finish));
     });
   }
@@ -59,6 +62,35 @@ class SkillsDirective {
         });
       }
     );
+  }
+
+	startTyping_NET (element) {
+    var self = this;
+
+    var SKILLS_TEXT = self.SKILLS_TEXT;
+
+    return new Promise(
+      function (resolve, reejct) {
+				self.element.find(self.constants.textarea_net_Id)
+        //.focus()
+        .typetype(SKILLS_TEXT.text_net, {
+            t: SKILLS_TEXT.time,
+            e: SKILLS_TEXT.errors,
+
+            callback: function () {
+                resolve();
+            }
+        });
+      }
+    );
+  }
+
+	showScrollIcon (element) {
+      var self = this;
+
+      var scrollDownIconContainer = element.find('#skillsScrollIcon');
+      scrollDownIconContainer
+      	.css('opacity', '1');
   }
 
 	static directiveFactory($timeout, SKILLS_TEXT){

@@ -3,18 +3,25 @@
 default: &default
   meet:
     text: |
-      Hi! I'm glad to meet you :)
-      
-      So, as you know, I want to work in your company. And I'll try to prove that I am exactly who you need.
-      
-      Sure... it's me
+      Hi! I'm glad to meet you ☺
+
+      I enjoy building websites and doing it professionaly for over eight years. I'm located in Kiev, Ukraine and available for interesting worldwide projects.
+
+      Let me tell you my story
     time: 10
     errors: 0.00
   skills:
     text: |
+      Now I'm working as Front-End web developer and using web technologies stack:
+    text_net: |
+      and .NET/MS SQL stack as Back-End:
+    time: 10
+    errors: 0.00
+  beginning:
+    text: |
       I'm working as a developer for about 7 years. I've started my carrier from .NET technologies: ASP.NET/C#, ASP.NET MVC/C#, etc.
-      
-      About 3 years ago I've focused on Front-End technologies and truly admire them and still enjoy :) This time I've been part of different teams as Front-End developer.
+
+      About 5 years ago I've focused on Front-End technologies and truly admire them and still enjoy :) This time I've been part of different teams as Front-End web developer.
     time: 10
     errors: 0.00
   education:
