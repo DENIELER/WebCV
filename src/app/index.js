@@ -9,6 +9,7 @@ import ScrollManager from '../app/services/scrollManager';
 import MeetDirective from '../app/components/meet/meet.directive';
 import SkillsDirective from '../app/components/skills/skills.directive';
 import ExperienceDirective from '../app/components/experience/experience.directive';
+import ContactsDirective from '../app/components/contacts/contacts.directive';
 
 import LoadedDirective from '../app/components/loaded/loaded.directive';
 
@@ -29,6 +30,7 @@ angular.module('denieler', ['ngAnimate', 'ngCookies', 'ngTouch', 'ngSanitize', '
   .directive('meet', MeetDirective.directiveFactory)
   .directive('skills', SkillsDirective.directiveFactory)
   .directive('experience', ExperienceDirective.directiveFactory)
+  .directive('contacts', ContactsDirective.directiveFactory)
 
   .directive('loaded', LoadedDirective.directiveFactory)
   

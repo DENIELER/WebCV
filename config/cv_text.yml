@@ -31,9 +31,28 @@ default: &default
     errors: 0.04
   experience:
     text: |
-      (Experience)
-    time: 70
-    errors: 0.04
+      I have about 7+ years of development web, about 3+ years of front-end direction.
+    job1_header: |
+      CloudWorks LTD [Front-End Developer | 08 / 2015 - Present]
+    job1_description: |
+      Developing a front-end for the administrative tool for Teamwork Retail system. 
+      Tech: Javascript, DurandalJS, RequireJS, Knockout, C# 4.0, SQL Server 2014, WCF
+    job2_header: |
+      Betsson Group [Front-End Developer | 10 / 2013 - 08 / 2015]
+    job2_description: |
+      Was Front-End developer, part of payment team, that is developing payment system for Betsson Group web sites. That was few projects such as Payment Pages for multiple Betsson brands, Mobile Pages, Monitoring System for payments processing, Customer Activity Tracker, etc. All projects was on service base architecture. All projects was high loaded web resources so really required optimization skills. 
+      Tech: Javascript, AngularJS, EmberJS, HTML5, CSS3, Knockout, RequireJS, C# 4.5, SQL Server 2012, WCF, ASP.NET MVC
+    job3_header: |
+      CloudWorks LTD [Developer | 03 / 2011 - 09 / 2013]
+    job3_description: |
+      Formed part of the Teamwork Retail development team, which was responsible of desktop POS mostly. That was retail system for USA customers, based on .NET stack, using MSSQL Server as DB. Mostly we were focused on payment system and credit cards processing. 
+      Tech: C# 4.0, SQL Server 2008, LINQ2SQL, OOP, WCF, Web Services
+    job4_header: |
+      DB Best Technologies [Developer | 06 / 2009 - 08 / 2010]
+    job4_description: |
+      I was part of the team that is developing web sites based on ASP.NET Web Form\C#, MS SQL Server. Mostly that was sites in education area, all sites were finished and met the expected deadlines. Later we were developing win application based on .NET stack and small news portal on PHP.
+    time: 0
+    errors: 0.00
   qualities:
     text: |
       (Qualities)

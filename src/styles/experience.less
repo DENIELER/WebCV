@@ -1,3 +1,34 @@
 #experience {
   opacity: 0;
+
+  textarea {
+  	&[id$='-header'] {
+  		font-weight: bold;
+  	}
+
+    &[id$='-description'],
+    &[id$='-header'] {
+      margin-top: -8px; 
+    }
+
+  	&#job1-description {
+  		height: 8rem;
+  	}
+
+	&#job2-description {
+  		height: 21rem;
+  	}
+
+  	&#job3-description {
+  		height: 16rem;
+  	}
+
+  	&#job4-description {
+  		height: 16rem;
+  	}
+  }
+
+  #experienceScrollIcon .icon-circle-down {
+    margin-top: 10px;
+  }
 }

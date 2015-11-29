@@ -23,6 +23,9 @@ class MainCtrl {
     .broadcast('startExperienceAnimation')
     .wait('experienceAnimationFinished')
     .wait('waitForScroll', self.scrollManager)
+    .broadcast('startContactsAnimation')
+    .wait('contactsAnimationFinished')
+    .wait('waitForScroll', self.scrollManager)
     .run({
       loopLastAction: true
     });

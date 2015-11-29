@@ -60,6 +60,12 @@ class ScrollManager {
               self.scroll.allowScroll();
             });
           }
+      } else {
+        Promise.resolve()
+        .then(self._bindScroll.bind(self, callback))
+        .then(() => {
+          self.scroll.allowScroll();
+        });
       }
     }
   }
@@ -75,7 +81,7 @@ class ScrollManager {
 
   _getSectionPositions () {
 
-    var sections = ['meet', 'skills', 'experience'];
+    var sections = ['meet', 'skills', 'experience', 'contacts'];
     var results = [];
 
     sections.forEach(x => {
@@ -96,7 +102,7 @@ class ScrollManager {
   _scrollToElement (section, callback) {
     var self = this;
 
-    return self.scroll.scrollTo(section.element, 15, 1500);
+    return self.scroll.scrollTo(section.element, 15, 1000);
   }
 
   _getScrollToSection (scrollPosition, sections) {
