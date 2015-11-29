@@ -4,15 +4,15 @@ class MeetDirective {
   constructor ($timeout, MEET_TEXT, ScrollService) {
 
     this.templateUrl = 'app/components/meet/meet.html';
-        this.restrict = 'E';
-        this.replace = true;
+    this.restrict = 'E';
+    this.replace = true;
 
-        //use scope inheritance
-        // this.scope = { };
+    //use scope inheritance
+    // this.scope = { };
 
-        this.$timeout = $timeout;
-        this.scroll = ScrollService;
-        this.MEET_TEXT = MEET_TEXT;
+    this.$timeout = $timeout;
+    this.scroll = ScrollService;
+    this.MEET_TEXT = MEET_TEXT;
   }
 
   link(scope, element) {

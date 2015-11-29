@@ -1,5 +1,5 @@
 #skills {
-    opacity: 0;
+  opacity: 0;
 
 	#skillsTextarea {
 		height: 80px;
@@ -8,33 +8,50 @@
   #skillsTextarea_Net {
     margin: 25px 0 0 0;
 
-		height: 50px;
+		height: 60px;
 	}
 
   .skills-charts {
+    opacity: 0;
+    transition: opacity 0.5s ease;
+
     .block {
-      padding: 25px;
-      height: 250px;
+
+      .header {
+        img { 
+          width: 100%;
+        }
+      }
+
+      .block-body {
+        border: 1px solid #efefef;
+        height: 160px;
+        padding: 20px;
+
+        &.gray {
+          background-color: #f8f8f8;
+        }
+      }
     }
 
     .js {
-      color: #fefefa;
+      /*color: #fefefa;*/
 
-      background-color: #E91E63;
+      /*background-color: #E91E63;*/
     }
 
     .css {
-      background-color: #fdfdfd;
+      /*background-color: #fdfdfd;*/
     }
 
     .net {
-      background-color: #fdfdfd;
+      /*background-color: #fdfdfd;*/
     }
 
     .mssql {
-      color: #fefefa;
+      /*color: #fefefa;*/
 
-      background-color: #2196F3;
+      /*background-color: #2196F3;*/
     }
   }
 }

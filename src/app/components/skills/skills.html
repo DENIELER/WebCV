@@ -1,52 +1,71 @@
-<div id="skills">
-	<h3 class="block">Skills</h3>
+<section id="skills">
+	<div class="padding-block">
+		<h3>Skills</h3>
 
-	<textarea id="skillsTextarea" class="block"></textarea>
+		<textarea id="skillsTextarea"></textarea>
+	</div>
 
-	<div class="skills-charts">
-		<div class="row">
-			<div class="col-md-5 block js">
-				<h2>JS</h2>
-				<ul>
-					<li>VanillaJS</li>
-					<li>Angular JS</li>
-					<li>EmberJS</li>
-					<li>Ember-CLI</li>
-					<li>Knockout</li>
-				</ul>
+	<div class="skills-charts row" id="skills-part-1">
+		<div class="row-fluid">
+			<div class="col-md-6 block js">
+				<div class="header">
+					<img src="assets/images/js-skill.png" alt="js skills" />
+				</div>
+				<div class="block-body">
+					<ul>
+						<li>VanillaJS</li>
+						<li>Angular JS</li>
+						<li>Ember JS/Ember-CLI</li>
+						<li>Durandal JS</li>
+					</ul>
+				</div>
 			</div>
 
-			<div class="col-md-7 block css">
-				<h2>CSS</h2>
-				<ul>
-					<li>Bootstrap</li>
-					<li>Material Design</li>
-					<li>Pure CSS</li>
-				</ul>
+			<div class="col-md-6 block css">
+				<div class="header">
+					<img src="assets/images/css-skill.png" alt="css skills" />
+				</div>
+				<div class="block-body">
+					<ul>
+						<li>Bootstrap</li>
+						<li>Material Design</li>
+						<li>Pure CSS</li>
+					</ul>
+				</div>
 			</div>
 		</div>
 	</div>
 
-	<textarea id="skillsTextarea_Net" class="block"></textarea>
+	<div class="padding-block">
+		<textarea id="skillsTextarea_Net"></textarea>
+	</div>
 
-	<div class="skills-charts">
-		<div class="row">
-			<div class="col-md-8 block net">
-				<h2>.NET</h2>
-				<ul>
-					<li>.NET Framework 4.5/Roslyn</li>
-					<li>WCF Services</li>
-					<li>REST architecture</li>
-					<li>Unit, System, Integration Testng</li>
-				</ul>
+	<div class="skills-charts row" id="skills-part-2">
+		<div class="row-fluid">
+			<div class="col-md-6 block net">
+				<div class="header">
+					<img src="assets/images/net-skill.png" alt=".net skills" />
+				</div>
+				<div class="block-body">
+					<ul>
+						<li>.NET Framework 4.5/Roslyn</li>
+						<li>WCF Services</li>
+						<li>REST architecture</li>
+						<li>Unit-, System-, Integration- Testng</li>
+					</ul>
+				</div>
 			</div>
 
-			<div class="col-md-4 block mssql">
-				<h2>MS SQL</h2>
-				<ul>
-					<li>DB Performance Optimisation</li>
-					<li>ORMs (EF6, LINQ2SQL)</li>
-				</ul>
+			<div class="col-md-6 block mssql">
+				<div class="header">
+					<img src="assets/images/mssql-skill.png" alt=".ms sql server skills" />
+				</div>
+				<div class="block-body">
+					<ul>
+						<li>DB Performance Optimisation</li>
+						<li>ORMs (EF6, LINQ2SQL)</li>
+					</ul>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -54,4 +73,4 @@
 	<div class="scroll-icon-container" id="skillsScrollIcon">
 		<svg class="icon icon-circle-down" id="scroll-down-second"><use xlink:href="#icon-circle-down"></use></svg>
 	</div>
-</div>
+</section>

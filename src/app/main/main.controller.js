@@ -1,6 +1,6 @@
 'use strict';
 
-import Chain from '../services/chain';
+import Sequence from '../../../bower_components/angular-sequence-events/angular-sequence';
 
 class MainCtrl {
   constructor ($scope, $document, $timeout, ScrollManagerService) {
@@ -12,15 +12,20 @@ class MainCtrl {
 
     self.scrollManager = ScrollManagerService;
 
-    var chain = new Chain(this.$scope);
+    var sequence = new Sequence(this.$scope);
 
-    chain.wait('meetAnimationFinished')
+    sequence
+    .wait('meetAnimationFinished')
     .wait('waitForScroll', self.scrollManager)
     .broadcast('startSkillsAnimation')
     .wait('skillsAnimationFinished')
     .wait('waitForScroll', self.scrollManager)
-    .broadcast('startBeginningAnimation')
-    .run();
+    .broadcast('startExperienceAnimation')
+    .wait('experienceAnimationFinished')
+    .wait('waitForScroll', self.scrollManager)
+    .run({
+      loopLastAction: true
+    });
 //    .waitScrollToElement('beginning')
 //    .execEvent('startBeginningAnimation')
 //    .waitEvent('beginningAnimationFinished')

@@ -1,7 +1,7 @@
 'use strict';
 
 class SkillsDirective {
-	constructor ($timeout, SKILLS_TEXT) {
+	constructor ($timeout, SKILLS_TEXT, ScrollService) {
 
 		this.templateUrl = 'app/components/skills/skills.html';
         this.restrict = 'E';
@@ -10,6 +10,8 @@ class SkillsDirective {
 
         this.$timeout = $timeout;
         this.SKILLS_TEXT = SKILLS_TEXT;
+
+        this.scroll = ScrollService;
 
         this.constants = {
           moduleId: '#skills',
@@ -30,16 +32,19 @@ class SkillsDirective {
 
     self.$scope.$on(self.constants.events.start, function () {
 
-      self.showSkillsModule();
+      self.showModule();
 
       self.$timeout(() => self.startTyping(), 1000)
+        .then(() => self.showBlock('#skills-part-1'))
 				.then(() => self.startTyping_NET(), 1000)
+        .then(() => self.showBlock('#skills-part-2'))
+        .then(() => self.scroll.scrollTo('skills-part-1', 0, 500))
 				.then(() => self.showScrollIcon(element))
 				.then(() => self.$scope.$emit(self.constants.events.finish));
     });
   }
 
-  showSkillsModule () {
+  showModule () {
     this.element.css('opacity', '1');
   }
 
@@ -85,6 +90,10 @@ class SkillsDirective {
     );
   }
 
+  showBlock (blockElementId) {
+    angular.element(blockElementId).css('opacity', '1');
+  }
+
 	showScrollIcon (element) {
       var self = this;
 
@@ -93,12 +102,12 @@ class SkillsDirective {
       	.css('opacity', '1');
   }
 
-	static directiveFactory($timeout, SKILLS_TEXT){
-		SkillsDirective.instance = new SkillsDirective($timeout, SKILLS_TEXT);
+	static directiveFactory($timeout, SKILLS_TEXT, ScrollService){
+		SkillsDirective.instance = new SkillsDirective($timeout, SKILLS_TEXT, ScrollService);
 		return SkillsDirective.instance;
 	}
 }
 
-SkillsDirective.directiveFactory.$inject = ['$timeout', 'SKILLS_TEXT'];
+SkillsDirective.directiveFactory.$inject = ['$timeout', 'SKILLS_TEXT', 'ScrollService'];
 
 export default SkillsDirective;

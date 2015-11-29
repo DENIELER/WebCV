@@ -8,6 +8,9 @@ import ScrollManager from '../app/services/scrollManager';
 
 import MeetDirective from '../app/components/meet/meet.directive';
 import SkillsDirective from '../app/components/skills/skills.directive';
+import ExperienceDirective from '../app/components/experience/experience.directive';
+
+import LoadedDirective from '../app/components/loaded/loaded.directive';
 
 var config = require('./config');
 
@@ -25,7 +28,10 @@ angular.module('denieler', ['ngAnimate', 'ngCookies', 'ngTouch', 'ngSanitize', '
   
   .directive('meet', MeetDirective.directiveFactory)
   .directive('skills', SkillsDirective.directiveFactory)
+  .directive('experience', ExperienceDirective.directiveFactory)
 
+  .directive('loaded', LoadedDirective.directiveFactory)
+  
   .constant('ScrollTiming', { top: 1500})
   .constant('ScrollDirection', { up: 0, down: 1})
 
