@@ -18,6 +18,7 @@ var config = require('./config');
 //external
 var typeTypeLib = require('../vendors/jquery.typetype.min');
 var scrollLib = require('../vendors/angular-scroll.min');
+var polyfillLib = require('../vendors/polyfill.min');
 
 angular.module('denieler', ['ngAnimate', 'ngCookies', 'ngTouch', 'ngSanitize', 'ui.router', 'duScroll'])
 
