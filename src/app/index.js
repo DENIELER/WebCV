@@ -1,5 +1,7 @@
 'use strict';
 
+import BabelPolyfill from '../../node_modules/babel-polyfill/dist/polyfill';
+
 import MainCtrl from './main/main.controller';
 import LayoutCtrl from './layout/layout.controller';
 
