@@ -4,6 +4,7 @@ var gulp = require('gulp');
 var browserSync = require('browser-sync');
 
 var $ = require('gulp-load-plugins')();
+var autoprefixer = require('autoprefixer');
 
 var wiredep = require('wiredep').stream;
 
@@ -47,7 +48,7 @@ module.exports = function(options) {
       .pipe(vendorFilter.restore())
       .pipe($.sourcemaps.init())
       .pipe($.less(lessOptions)).on('error', options.errorHandler('Less'))
-      .pipe($.autoprefixer()).on('error', options.errorHandler('Autoprefixer'))
+      .pipe($.postcss([ autoprefixer() ])).on('error', options.errorHandler('Autoprefixer'))
       .pipe($.sourcemaps.write())
       .pipe(gulp.dest(options.tmp + '/serve/app/'))
       .pipe(browserSync.reload({ stream: true }));

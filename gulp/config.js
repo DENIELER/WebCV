@@ -4,15 +4,15 @@ var gulp = require('gulp');
 var yaml = require('js-yaml');
 var fs   = require('fs');
 var replace = require('gulp-replace-task');
- 
-module.exports = function(options) { 
+
+module.exports = function(options) {
 	 gulp.task('config', function () {
 
 	 	var filePath = 'config/cv_text.yml';
 
 	 	try {
 			var cv_text = yaml.safeLoad(fs.readFileSync(filePath, 'utf8'));
-			console.log(cv_text);
+			// console.log(cv_text);
 	 	} catch (e) {
 			console.log(e);
 		}

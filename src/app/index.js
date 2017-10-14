@@ -24,17 +24,17 @@ angular.module('denieler', ['ngAnimate', 'ngCookies', 'ngTouch', 'ngSanitize', '
 
   .controller('MainCtrl', MainCtrl)
   .controller('LayoutCtrl', LayoutCtrl)
-  
+
   .service('ScrollService', ScrollService)
   .service('ScrollManagerService', ScrollManager)
-  
+
   .directive('meet', MeetDirective.directiveFactory)
   .directive('skills', SkillsDirective.directiveFactory)
   .directive('experience', ExperienceDirective.directiveFactory)
   .directive('contacts', ContactsDirective.directiveFactory)
 
   .directive('loaded', LoadedDirective.directiveFactory)
-  
+
   .constant('ScrollTiming', { top: 1500})
   .constant('ScrollDirection', { up: 0, down: 1})
 

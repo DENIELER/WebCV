@@ -4,13 +4,21 @@ var gulp = require('gulp');
 var browserSync = require('browser-sync');
 
 var $ = require('gulp-load-plugins')();
+var webpackStream = require('webpack-stream');
 
 module.exports = function(options) {
   function webpack(watch, callback) {
     var webpackOptions = {
       watch: watch,
       module: {
-        loaders: [{ test: /\.js$/, exclude: /node_modules/, loader: 'babel-loader'}]
+        loaders: [{
+          test: /\.js$/,
+          exclude: /node_modules/,
+          loader: 'babel-loader',
+          options: {
+            presets: ['es2015']
+          }
+        }]
       },
       output: { filename: 'index.js' }
     };
@@ -32,7 +40,7 @@ module.exports = function(options) {
       browserSync.reload();
 
       gulp.start('config');
-      
+
       if(watch) {
         watch = false;
         callback();
@@ -40,7 +48,7 @@ module.exports = function(options) {
     };
 
     return gulp.src(options.src + '/app/index.js')
-      .pipe($.webpack(webpackOptions, null, webpackChangeHandler))
+      .pipe(webpackStream(webpackOptions, null, webpackChangeHandler))
       .pipe(gulp.dest(options.tmp + '/serve/app'))
       .on('end', function() { gulp.start('config'); });
   }
