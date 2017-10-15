@@ -17,7 +17,8 @@ class ScrollManager {
     self.nextSection = self.sections[1];
   }
 
-  waitForScroll (callback) {
+  waitForScroll (callback, scrollUpTo) {
+    console.log('Arguments', scrollUpTo)
     var self = this;
 
     self.scroll.allowScroll();
@@ -46,7 +47,7 @@ class ScrollManager {
       var currentScrollPosition = self.scroll.getScrollTop();
 
       var scrollToSection = self._getScrollToSection(currentScrollPosition, self.sections);
-      if (scrollToSection) 
+      if (scrollToSection)
       {
           if (self.nextSection && scrollToSection.element === self.nextSection.element) {
             self._scrollToElement(scrollToSection)
@@ -86,7 +87,7 @@ class ScrollManager {
 
     sections.forEach(x => {
       var sectionElement = angular.element('#' + x)[0];
-      
+
       if (sectionElement) {
         results.push({
           element: x,

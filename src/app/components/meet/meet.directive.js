@@ -24,7 +24,9 @@ class MeetDirective {
       .then(() => self.showPhotos(element))
       .then(() => self.scroll.scrollTo('meetTextarea', 20, 500))
       .then(() => self.showScrollIcon(element))
-      .then(() => self.$scope.$emit('meetAnimationFinished'));
+      .then(() => self.$scope.$emit('meetAnimationFinished', {
+        scrollUpTo: element.prop('clientHeight')
+      }));
   }
 
   startTyping (element) {
@@ -39,18 +41,16 @@ class MeetDirective {
     return new Promise(
       (resolve, reejct) => {
         textArea
-        .focus()
-        .typetype(MEET_TEXT.text, {
-	        t: MEET_TEXT.time,
-	        e: MEET_TEXT.errors,
+          .focus()
+          .typetype(MEET_TEXT.text, {
+            t: MEET_TEXT.time,
+            e: MEET_TEXT.errors,
 
-	        callback: _ => {
-            console.log('height finish:', textArea.prop('clientHeight'))
-	          textArea
-	            .attr('readonly', 'readonly');
+            callback: _ => {
+              textArea.attr('readonly', 'readonly');
 
-	          resolve();
-	        }
+              resolve();
+            }
         });
       }
     );
