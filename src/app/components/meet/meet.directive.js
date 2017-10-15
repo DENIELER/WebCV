@@ -1,7 +1,7 @@
 'use strict';
 
 class MeetDirective {
-  constructor ($timeout, MEET_TEXT, ScrollService) {
+  constructor ($timeout, MEET_TEXT, ScrollService, StyleUtilsService) {
 
     this.templateUrl = 'app/components/meet/meet.html';
     this.restrict = 'E';
@@ -12,6 +12,7 @@ class MeetDirective {
 
     this.$timeout = $timeout;
     this.scroll = ScrollService;
+    this.styleUtils = StyleUtilsService;
     this.MEET_TEXT = MEET_TEXT;
   }
 
@@ -26,15 +27,6 @@ class MeetDirective {
       .then(() => self.$scope.$emit('meetAnimationFinished'));
   }
 
-  calculateAndSetTextareaHeight(textareaElement, textareaText) {
-    textareaElement.val(textareaText);
-    textareaElement.css('height', '1px');
-
-    const calculatedHeight = textareaElement.prop('scrollHeight');
-    textareaElement.css('height', (25 + calculatedHeight) + 'px');
-    textareaElement.val(null)
-  }
-
   startTyping (element) {
   	var self = this;
 
@@ -42,11 +34,7 @@ class MeetDirective {
     const textArea = element.find('#meetTextarea');
 
     //reset height of textarea to support multiple devices
-    self.calculateAndSetTextareaHeight(textArea, MEET_TEXT.text);
-
-    // var w = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
-    var browserHeight = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
-    console.log('Browser height:', browserHeight)
+    self.styleUtils.calculateAndSetTextareaHeight(textArea, MEET_TEXT.text);
 
     return new Promise(
       (resolve, reejct) => {
@@ -85,12 +73,12 @@ class MeetDirective {
       	.css('opacity', '1');
   }
 
-  static directiveFactory($timeout, MEET_TEXT, ScrollService){
-    MeetDirective.instance = new MeetDirective($timeout, MEET_TEXT, ScrollService);
+  static directiveFactory($timeout, MEET_TEXT, ScrollService, StyleUtilsService){
+    MeetDirective.instance = new MeetDirective($timeout, MEET_TEXT, ScrollService, StyleUtilsService);
     return MeetDirective.instance;
   }
 }
 
-MeetDirective.directiveFactory.$inject = ['$timeout', 'MEET_TEXT', 'ScrollService'];
+MeetDirective.directiveFactory.$inject = ['$timeout', 'MEET_TEXT', 'ScrollService', 'StyleUtilsService'];
 
 export default MeetDirective;

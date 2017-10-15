@@ -5,6 +5,7 @@ import LayoutCtrl from './layout/layout.controller';
 
 import ScrollService from '../app/services/scroll';
 import ScrollManager from '../app/services/scrollManager';
+import StyleUtilsService from '../app/services/styleUtils';
 
 import MeetDirective from '../app/components/meet/meet.directive';
 import SkillsDirective from '../app/components/skills/skills.directive';
@@ -27,6 +28,7 @@ angular.module('denieler', ['ngAnimate', 'ngCookies', 'ngTouch', 'ngSanitize', '
 
   .service('ScrollService', ScrollService)
   .service('ScrollManagerService', ScrollManager)
+  .service('StyleUtilsService', StyleUtilsService)
 
   .directive('meet', MeetDirective.directiveFactory)
   .directive('skills', SkillsDirective.directiveFactory)
