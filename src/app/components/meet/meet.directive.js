@@ -21,26 +21,44 @@ class MeetDirective {
 
     self.$timeout(() => self.startTyping(element), 1000)
       .then(() => self.showPhotos(element))
-      .then(() => self.scroll.scrollTo('meetTextarea', 0, 500))
+      .then(() => self.scroll.scrollTo('meetTextarea', 20, 500))
       .then(() => self.showScrollIcon(element))
       .then(() => self.$scope.$emit('meetAnimationFinished'));
+  }
+
+  calculateAndSetTextareaHeight(textareaElement, textareaText) {
+    textareaElement.val(textareaText);
+    textareaElement.css('height', '1px');
+
+    const calculatedHeight = textareaElement.prop('scrollHeight');
+    textareaElement.css('height', (25 + calculatedHeight) + 'px');
+    textareaElement.val(null)
   }
 
   startTyping (element) {
   	var self = this;
 
     var MEET_TEXT = self.MEET_TEXT;
+    const textArea = element.find('#meetTextarea');
+
+    //reset height of textarea to support multiple devices
+    self.calculateAndSetTextareaHeight(textArea, MEET_TEXT.text);
+
+    // var w = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
+    var browserHeight = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
+    console.log('Browser height:', browserHeight)
 
     return new Promise(
-      function (resolve, reejct) {
-        element.find('#meetTextarea')
+      (resolve, reejct) => {
+        textArea
         .focus()
         .typetype(MEET_TEXT.text, {
 	        t: MEET_TEXT.time,
 	        e: MEET_TEXT.errors,
 
-	        callback: function () {
-	          element.find('#meetTextarea')
+	        callback: _ => {
+            console.log('height finish:', textArea.prop('clientHeight'))
+	          textArea
 	            .attr('readonly', 'readonly');
 
 	          resolve();
