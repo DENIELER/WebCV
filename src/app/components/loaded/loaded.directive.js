@@ -18,7 +18,7 @@ class LoadedDirective {
     self.$scope = scope;
     self.element = element;
 
-    self.$timeout(x => self.scrollManager.init());
+    self.$timeout(x => self.scrollManager.init(), 1500);
   }
 
 	static directiveFactory($timeout, ScrollManagerService){
