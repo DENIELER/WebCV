@@ -1,6 +1,6 @@
 body {
 	font-family:Raleway, Open Sans, Droid Sans, Roboto,arial, sans-serif;
-	font-size: 2vmax;
+	font-size: 18px;
 	overflow: hidden;
 }
 
@@ -21,4 +21,10 @@ textarea {
 	    border: none;
 	    box-shadow: none;
 	}
+}
+
+@media (max-width: @screen-md-min) {
+  body {
+    font-size: 2vmax;
+  }
 }
