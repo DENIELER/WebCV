@@ -6,7 +6,7 @@ class StyleUtilsService {
     textareaElement.css('height', '1px');
 
     const calculatedHeight = textareaElement.prop('scrollHeight');
-    textareaElement.css('height', (10 + calculatedHeight) + 'px');
+    textareaElement.css('height', (1 + calculatedHeight) + 'px');
     textareaElement.val(null)
   }
 

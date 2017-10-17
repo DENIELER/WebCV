@@ -12,7 +12,15 @@ default: &default
     errors: 0.00
   skills:
     text: |
-      Now I'm working as Front-End web developer and using web technologies stack:
+      Now I'm working as Front-End web developer in a design-oriented startup - Typeform.
+    text_typeform: |
+      In Typeform I'm working as a Senior Software engineer on projects for the base functionality of the product, was part of the Growth team that was increasing main metrics of the company. Mostly I'm focused on Front-End development right now.
+
+      Technology stack that we are using:
+    other_frontend_skills: |
+      As a Front-End developer I enjoy plain JavaScript, but also have experience with different frameworks, like AngularJS, EmberJS, VueJS, also some dinosaurs like DurandalJS. I'm a fun of a functional way of writing the code but in the correct place in the correct time.
+
+      I worked with multiple different CSS frameworks, like famous Bootstrap or PureCSS and not so famous yet like Bulma and pre-processors like Less, Sass, etc. On last projects, I worked with CSS styles mostly using BEM and PostCSS or StyledComponents.
     text_net: |
       and .NET/MS SQL stack as Back-End:
     time: 10

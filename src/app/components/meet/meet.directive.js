@@ -14,18 +14,26 @@ class MeetDirective {
     this.scroll = ScrollService;
     this.styleUtils = StyleUtilsService;
     this.MEET_TEXT = MEET_TEXT;
+
+    this.constants = {
+      textareaId: '#meetTextarea',
+      events: {
+        finish: 'meetAnimationFinished'
+      }
+    };
   }
 
   link(scope, element) {
     var self = MeetDirective.instance;
     self.$scope = scope;
+    const { browserHeight } = self.styleUtils.getBrowserSize();
 
     self.$timeout(() => self.startTyping(element), 1000)
       .then(() => self.showPhotos(element))
       .then(() => self.scroll.scrollTo('meetTextarea', 20, 500))
       .then(() => self.showScrollIcon(element))
-      .then(() => self.$scope.$emit('meetAnimationFinished', {
-        scrollUpTo: element.prop('clientHeight')
+      .then(() => self.$scope.$emit(self.constants.events.finish, {
+        scrollUpTo: element.prop('clientHeight') - browserHeight + element.prop('offsetTop')
       }));
   }
 
@@ -33,7 +41,7 @@ class MeetDirective {
   	var self = this;
 
     var MEET_TEXT = self.MEET_TEXT;
-    const textArea = element.find('#meetTextarea');
+    const textArea = element.find(self.constants.textareaId);
 
     //reset height of textarea to support multiple devices
     self.styleUtils.calculateAndSetTextareaHeight(textArea, MEET_TEXT.text);

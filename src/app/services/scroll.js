@@ -25,7 +25,7 @@ class ScrollService {
 	scrollTo (elementId, offset, duration) {
 		var self = this;
 
-    if (!self.scrollBlocked) {
+    // if (!self.scrollBlocked) {
     	var offset = offset || 0;
       var duration = duration || self.duration;
 
@@ -35,21 +35,21 @@ class ScrollService {
     	var scrollElement = angular.element(self.$document.context.getElementById(elementId));
     	return self.$document.scrollToElementAnimated(scrollElement, offset, duration, function (t) { return t*t*t })
             .then(() => self.$timeout(() => { self.scrollBlocked = false; }, 300));
-    }
+    // }
   }
 
   scrollTop (duration) {
   	var self = this;
 
-      if (!self.scrollBlocked) {
-          var duration = duration || self.duration;
+    if (!self.scrollBlocked) {
+      var duration = duration || self.duration;
 
-          self.scrollBlocked = true;
+      self.scrollBlocked = true;
 
-          self.$timeout(() => { self.scrollBlocked = false; }, 1000);
-          return self.$document.scrollToAnimated(0, 0, duration, function (t) { return t*t*t })
-              .then(() => self.$timeout(() => { self.scrollBlocked = false; }, 300));
-      }
+      self.$timeout(() => { self.scrollBlocked = false; }, 1000);
+      return self.$document.scrollToAnimated(0, 0, duration, function (t) { return t*t*t })
+          .then(() => self.$timeout(() => { self.scrollBlocked = false; }, 300));
+    }
   }
 
   getScrollTop () {
@@ -79,17 +79,17 @@ class ScrollService {
     console.log('Scroll: Prevented scroll');
   }
 
-  allowScroll () {
+  allowScroll (topScrollLimit, bottomScrollLimit) {
     if (this.$window.removeEventListener) // older FF
       this.$window.removeEventListener('DOMMouseScroll', this._preventDefault.bind(this), false);
 
     if (this.$window.addEventListener) // older FF
-      this.$window.addEventListener('DOMMouseScroll', this._scrollHandler.bind(this), false);
+      this.$window.addEventListener('DOMMouseScroll', this._scrollHandler.bind(this, topScrollLimit, bottomScrollLimit), false);
 
-    this.$window.onmousewheel = this.$document.context.onmousewheel = this._scrollHandler.bind(this);
+    this.$window.onmousewheel = this.$document.context.onmousewheel = this._scrollHandler.bind(this, topScrollLimit, bottomScrollLimit);
     this.$window.onwheel = null;
     this.$window.ontouchmove = null;
-    this.$document.context.onkeydown = this._scrollHandlerForScrollKeys.bind(this);
+    this.$document.context.onkeydown = this._scrollHandlerForScrollKeys.bind(this, topScrollLimit, bottomScrollLimit);
 
     console.log('Scroll: Allowed scroll');
   }
@@ -123,18 +123,20 @@ class ScrollService {
     }
   }
 
-  _scrollHandler (e) {
+  _scrollHandler (topScrollLimit, bottomScrollLimit, e) {
     var self = this;
 
     if (!e) /* For IE. */
       e = self.$window.event;
 
-    if (e.preventDefault)
-      e.preventDefault();
-    e.returnValue = false;
+    var scrollTop = window.scrollY;
+    if (scrollTop <= topScrollLimit || scrollTop >= bottomScrollLimit) {
+      if (e.preventDefault)
+        e.preventDefault();
+      e.returnValue = false;
+    }
 
     if (!self.scrollBlocked) {
-
       var delta;
       if (e.wheelDelta) { /* IE/Opera. */
           delta = e.wheelDelta/120;

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="78px" height="78px" viewBox="0 0 78 78" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Logo-78x78-border">
+            <g id="Logo">
+                <g id="Group-2">
+                    <path d="M78,62.5010468 L78,73.0020936 C78,75.7623611 75.7705381,78 73.0020936,78 L62.5010468,78 L52,78 L52,52 L78,52 L78,62.5010468 L78,62.5010468 Z" id="Combined-Shape" fill="#949393"></path>
+                    <rect id="Rectangle-1034" fill="#BBBBBB" x="26" y="52" width="26" height="26"></rect>
+                    <path d="M15.4989532,78 L4.99790642,78 C2.23763892,78 0,75.7705381 0,73.0020936 L0,62.5010468 L0,52 L26,52 L26,78 L15.4989532,78 L15.4989532,78 Z" id="Combined-Shape" fill="#D8D8D8"></path>
+                    <rect id="Rectangle-1034" fill="#C75875" x="52" y="26" width="26" height="26"></rect>
+                    <rect id="Rectangle-1034" fill="#C384C5" x="26" y="26" width="26" height="26"></rect>
+                    <rect id="Rectangle-1034" fill="#89BC62" x="0" y="26" width="26" height="26"></rect>
+                    <path d="M62.5010468,0 L73.0020936,0 C75.7623611,0 78,2.22946192 78,4.99790642 L78,15.4989532 L78,26 L52,26 L52,0 L62.5010468,0 L62.5010468,0 Z" id="Combined-Shape" fill="#CB732B"></path>
+                    <rect id="Rectangle-1034" fill="#E4BA3F" x="26" y="0" width="26" height="26"></rect>
+                    <path d="M15.4989532,0 L4.99790642,0 C2.22946192,0 0,2.23763892 0,4.99790642 L0,15.4989532 L0,26 L26,26 L26,0 L15.4989532,0 L15.4989532,0 Z" id="Combined-Shape" fill="#8BCBCA"></path>
+                </g>
+                <path d="M33,33 L33,50.0000004 C33,52.0495121 32.8706177,53.686438 34.0706177,54.802063 C35.2706177,55.917688 36.0667826,55.8753822 38,56 C38.3991334,56.0183859 40.8828733,56 42.0003965,56 L42.0003965,61.62854 C40.8082319,61.7566914 39.8942333,62.0000004 37.5578428,62.0000004 C33.5137683,62.0000004 31.0338194,60.9634769 29.1578428,59.2000004 C27.2818663,57.4365238 26,54.8 26,50.4 C26,46 25.9999999,33 25.9999999,33 L19,33 L19,26 L26.0000001,26 L26,16 L33,16.0000004 L33,26 L42.0003976,26 L42.0003974,33 L33,33 Z" id="t" fill="#FFFFFF"></path>
+                <polygon id="|" fill="#FFFFFF" points="49 12 54 12 54 66 49 66"></polygon>
+            </g>
+        </g>
+    </g>
+</svg>
