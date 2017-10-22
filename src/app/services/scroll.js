@@ -103,17 +103,19 @@ class ScrollService {
       direction = this.scrollDirection.down;
     }
 
-    console.info('Scroll: Scroll direction: ' + direction);
-
     return direction;
   }
 
   //private
   _preventDefault(e) {
-    e = e || this.$window.event;
-    if (e.preventDefault)
-      e.preventDefault();
-    e.returnValue = false;
+    try {
+      e = e || this.$window.event;
+      if (e.preventDefault)
+        e.preventDefault();
+      e.returnValue = false;
+    } catch (e) {
+      console.log('Scroll service _preventDefault method. Error:', e)
+    }
   }
 
   _preventDefaultForScrollKeys(e) {
@@ -130,7 +132,13 @@ class ScrollService {
       e = self.$window.event;
 
     var scrollTop = window.scrollY;
-    if (scrollTop <= topScrollLimit || scrollTop >= bottomScrollLimit) {
+    const scrollDirection = self.getScrollDirection();
+    if (
+      // (scrollTop <= topScrollLimit && scrollDirection === self.scrollDirection.up)
+      // ||
+      (scrollTop >= bottomScrollLimit && scrollDirection === self.scrollDirection.down)) {
+      //to make mouse experience better immediatly change direction
+      self.scrollDelta = 1;
       if (e.preventDefault)
         e.preventDefault();
       e.returnValue = false;

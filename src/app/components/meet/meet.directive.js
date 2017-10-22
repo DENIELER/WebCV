@@ -1,18 +1,16 @@
 'use strict';
 
 class MeetDirective {
-  constructor ($timeout, MEET_TEXT, ScrollService, StyleUtilsService) {
+  constructor ($timeout, MEET_TEXT, ScrollService, StyleUtilsService, TypingService) {
 
     this.templateUrl = 'app/components/meet/meet.html';
     this.restrict = 'E';
     this.replace = true;
 
-    //use scope inheritance
-    // this.scope = { };
-
     this.$timeout = $timeout;
     this.scroll = ScrollService;
     this.styleUtils = StyleUtilsService;
+    this.typing = TypingService;
     this.MEET_TEXT = MEET_TEXT;
 
     this.constants = {
@@ -26,42 +24,17 @@ class MeetDirective {
   link(scope, element) {
     var self = MeetDirective.instance;
     self.$scope = scope;
+    const MEET_TEXT = self.MEET_TEXT;
     const { browserHeight } = self.styleUtils.getBrowserSize();
 
-    self.$timeout(() => self.startTyping(element), 1000)
-      .then(() => self.showPhotos(element))
-      .then(() => self.scroll.scrollTo('meetTextarea', 20, 500))
-      .then(() => self.showScrollIcon(element))
-      .then(() => self.$scope.$emit(self.constants.events.finish, {
+    self.$timeout(
+      __ => self.typing.startTyping(MEET_TEXT.text, MEET_TEXT.time, MEET_TEXT.errors, element, self.constants.textareaId), 1000)
+      .then(_ => self.showPhotos(element))
+      .then(_ => self.scroll.scrollTo('meetTextarea', 20, 500))
+      .then(_ => self.showScrollIcon(element))
+      .then(_ => self.$scope.$emit(self.constants.events.finish, {
         scrollUpTo: element.prop('clientHeight') - browserHeight + element.prop('offsetTop')
       }));
-  }
-
-  startTyping (element) {
-  	var self = this;
-
-    var MEET_TEXT = self.MEET_TEXT;
-    const textArea = element.find(self.constants.textareaId);
-
-    //reset height of textarea to support multiple devices
-    self.styleUtils.calculateAndSetTextareaHeight(textArea, MEET_TEXT.text);
-
-    return new Promise(
-      (resolve, reejct) => {
-        textArea
-          .focus()
-          .typetype(MEET_TEXT.text, {
-            t: MEET_TEXT.time,
-            e: MEET_TEXT.errors,
-
-            callback: _ => {
-              textArea.attr('readonly', 'readonly');
-
-              resolve();
-            }
-        });
-      }
-    );
   }
 
   showPhotos (element) {
@@ -81,12 +54,12 @@ class MeetDirective {
       	.css('opacity', '1');
   }
 
-  static directiveFactory($timeout, MEET_TEXT, ScrollService, StyleUtilsService){
-    MeetDirective.instance = new MeetDirective($timeout, MEET_TEXT, ScrollService, StyleUtilsService);
+  static directiveFactory($timeout, MEET_TEXT, ScrollService, StyleUtilsService, TypingService){
+    MeetDirective.instance = new MeetDirective($timeout, MEET_TEXT, ScrollService, StyleUtilsService, TypingService);
     return MeetDirective.instance;
   }
 }
 
-MeetDirective.directiveFactory.$inject = ['$timeout', 'MEET_TEXT', 'ScrollService', 'StyleUtilsService'];
+MeetDirective.directiveFactory.$inject = ['$timeout', 'MEET_TEXT', 'ScrollService', 'StyleUtilsService', 'TypingService'];
 
 export default MeetDirective;

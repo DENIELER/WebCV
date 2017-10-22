@@ -6,8 +6,10 @@ import LayoutCtrl from './layout/layout.controller';
 import ScrollService from '../app/services/scroll';
 import ScrollManager from '../app/services/scrollManager';
 import StyleUtilsService from '../app/services/styleUtils';
+import TypingService from '../app/services/typing';
 
 import MeetDirective from '../app/components/meet/meet.directive';
+import TypeformExperienceDirective from '../app/components/typeform-experience/typeform-experience.directive';
 import SkillsDirective from '../app/components/skills/skills.directive';
 import ExperienceDirective from '../app/components/experience/experience.directive';
 import ContactsDirective from '../app/components/contacts/contacts.directive';
@@ -29,8 +31,10 @@ angular.module('denieler', ['ngAnimate', 'ngCookies', 'ngTouch', 'ngSanitize', '
   .service('ScrollService', ScrollService)
   .service('ScrollManagerService', ScrollManager)
   .service('StyleUtilsService', StyleUtilsService)
+  .service('TypingService', TypingService)
 
   .directive('meet', MeetDirective.directiveFactory)
+  .directive('typeformExperience', TypeformExperienceDirective.directiveFactory)
   .directive('skills', SkillsDirective.directiveFactory)
   .directive('experience', ExperienceDirective.directiveFactory)
   .directive('contacts', ContactsDirective.directiveFactory)

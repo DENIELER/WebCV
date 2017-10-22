@@ -25,21 +25,28 @@ class ScrollManager {
 
     self.scroll.allowScroll(-2, scrollUpTo);
 
-    self._bindScroll(0, scrollUpTo, callback);
+    self._bindScroll(-2, scrollUpTo, callback);
   }
 
-  scrollSkillsModuleHandler (topScrollLimit, bottomScrollLimit, callback, e) {
+  scrollModuleHandler (topScrollLimit, bottomScrollLimit, callback, e) {
     var scrollTop = window.scrollY;
 
-    if (scrollTop >= topScrollLimit && scrollTop <= bottomScrollLimit) {
-      console.log('Blocked skill module handler:', topScrollLimit, bottomScrollLimit, scrollTop)
+    if (scrollTop > topScrollLimit && scrollTop < bottomScrollLimit) {
+      console.log('Blocked module handler:', topScrollLimit, bottomScrollLimit, scrollTop)
       return;
     }
 
+    const self = this;
+    const isLastSection = self._isLastSection(scrollTop, self.sections)
+    if (isLastSection) {
+      console.log('Last section detected. Scroll events are not firing.')
+      return;
+    }
+
+    console.log('Passed event:', scrollTop, e, bottomScrollLimit)
+
     document.body.style.overflow = '';
   	this.scroll.preventScroll();
-
-    var self = this;
 
     console.info('ScrollManager: Scroll event');
 
@@ -47,42 +54,42 @@ class ScrollManager {
 
     var scrollDirection = self.scroll.getScrollDirection();
 
-    if (scrollDirection === self.scrollDirection.up) {
-      self._scrollTop()
-      .then(self._bindScroll.bind(self, callback))
-      .then(() => {
-        self.scroll.allowScroll();
-      });
-    } else {
-      var currentScrollPosition = self.scroll.getScrollTop();
+    // if (scrollDirection === self.scrollDirection.up) {
+    //   self._scrollTop()
+    //   .then(self._bindScroll.bind(self, callback))
+    //   .then(() => {
+    //     self.scroll.allowScroll();
+    //   });
+    // } else {
 
-      var scrollToSection = self._getScrollToSection(currentScrollPosition, self.sections);
-      if (scrollToSection)
-      {
-        if (self.nextSection && scrollToSection.element === self.nextSection.element) {
-          self._scrollToElement(scrollToSection)
-          .then(() => callback());
+    const currentScrollPosition = self.scroll.getScrollTop();
+    var scrollToSection = self._getScrollToSection(currentScrollPosition, self.sections);
+    if (scrollToSection)
+    {
+      if (self.nextSection && scrollToSection.element === self.nextSection.element) {
+        self._scrollToElement(scrollToSection)
+        .then(() => callback());
 
-          self._setNextSection(scrollToSection, self.sections);
-        } else {
-          self._scrollToElement(scrollToSection)
-          .then(self._bindScroll.bind(self, callback))
-          .then(() => {
-            self.scroll.allowScroll();
-          });
-        }
+        self._setNextSection(scrollToSection, self.sections);
       } else {
-        Promise.resolve()
+        self._scrollToElement(scrollToSection)
         .then(self._bindScroll.bind(self, callback))
         .then(() => {
           self.scroll.allowScroll();
         });
       }
+    } else {
+      Promise.resolve()
+      .then(self._bindScroll.bind(self, callback))
+      .then(() => {
+        self.scroll.allowScroll();
+      });
     }
+    // }
   }
 
   _bindScroll (topScrollLimit, bottomScrollLimit, callback) {
-    var eventHandler = this.scrollSkillsModuleHandler.bind(this, topScrollLimit, bottomScrollLimit, callback);
+    var eventHandler = this.scrollModuleHandler.bind(this, topScrollLimit, bottomScrollLimit, callback);
     this.scroll.addScrollHandler(eventHandler);
   }
 
@@ -94,7 +101,8 @@ class ScrollManager {
 
     var sections = [
       'meet',
-      'skills',
+      'typeform-experience',
+      // 'skills',
       'experience',
       'contacts'
     ];
@@ -152,6 +160,10 @@ class ScrollManager {
     }
 
     return null;
+  }
+
+  _isLastSection (scrollPosition, sections) {
+    return scrollPosition >= sections[sections.length - 1].start;
   }
 
   _scrollTop () {

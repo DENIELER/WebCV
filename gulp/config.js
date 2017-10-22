@@ -18,9 +18,11 @@ module.exports = function(options) {
 		}
 
 		var patterns = [
-			{match: 'meet_text', replacement: cv_text.default.meet},
+      {match: 'meet_text', replacement: cv_text.default.meet},
+      {match: 'typeform_text', replacement: cv_text.default.typeform},
 			{match: 'skills_text', replacement: cv_text.default.skills},
-			{match: 'experience_text', replacement: cv_text.default.experience},
+      {match: 'experience_text', replacement: cv_text.default.experience},
+      {match: 'contacts_text', replacement: cv_text.default.contacts},
 		];
 
 		// Replace each placeholder with the correct value for the variable.

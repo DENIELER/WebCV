@@ -54,7 +54,7 @@ class SkillsDirective {
         .then(() => self.showScrollIcon(element))
         .then(() => self.$scope.$emit(self.constants.events.finish, {
           scrollUpTo: element.prop('clientHeight') - browserHeight + element.prop('offsetTop')
-      }));
+        }));
     });
   }
 

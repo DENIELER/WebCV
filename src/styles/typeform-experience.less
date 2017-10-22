@@ -1,0 +1,36 @@
+#typeform-experience {
+  opacity: 0;
+
+  .skills-typeform {
+    opacity: 0;
+    transition: opacity 0.5s ease;
+
+    .skills-typeform__logo {
+      display: flex;
+      justify-content: center;
+
+      .skills-typeform__logo__link {
+        text-decoration: none;
+      }
+
+      .skills-typeform__logo__image {
+        height: 180px;
+      }
+    }
+
+    .skills-typeform__desc {
+      margin-top: 2em;
+
+      .skills-typeform__desc__list {
+        opacity: 0;
+        transition: opacity 0.5s ease;
+
+        margin-top: -1rem;
+
+        .skills-typeform__desc__list__website {
+          margin-top: 2rem;
+        }
+      }
+    }
+  }
+}

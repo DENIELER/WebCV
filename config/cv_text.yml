@@ -5,18 +5,23 @@ default: &default
     text: |
       Hi! I'm glad to meet you ☺
 
-      I enjoy to build websites and do it professionally, it's already passed almost eight years after I've started. I'm based in Barcelona, Spain and available for interesting worldwide projects.
+      I enjoy to build professional websites, it's already passed almost eight years after I've started. I'm based in Barcelona, Spain and available for interesting worldwide projects.
 
       Let me tell you my story
     time: 10
     errors: 0.00
-  skills:
-    text: |
-      Now I'm working as Front-End web developer in a design-oriented startup - Typeform.
-    text_typeform: |
-      In Typeform I'm working as a Senior Software engineer on projects for the base functionality of the product, was part of the Growth team that was increasing main metrics of the company. Mostly I'm focused on Front-End development right now.
+  typeform:
+    header: |
+      Typeform is a design-oriented fast-growing tech start-up. I worked there as a Senior Software engineer first in the team which was responsible for growth metrics and later in core product teams (payments, subscriptions, platform. etc.).
+    content: |
+      In growth team using our analytical and entrepreneur skills, we've reached more than 36% of the company's yearly revenue growth.
+
+      In core product teams I'm working as a Front-End oriented full-stack developer. Mostly we are using Javascript with React and Redux-based state management on the Front-End and PHP or Go on the Back-End.
 
       Technology stack that we are using:
+    time: 10
+    errors: 0.00
+  skills:
     other_frontend_skills: |
       As a Front-End developer I enjoy plain JavaScript, but also have experience with different frameworks, like AngularJS, EmberJS, VueJS, also some dinosaurs like DurandalJS. I'm a fun of a functional way of writing the code but in the correct place in the correct time.
 
@@ -39,26 +44,26 @@ default: &default
     errors: 0.04
   experience:
     text: |
-      I have about 7+ years of development web, about 3+ years of front-end direction.
+      I have about 8+ years of developing web, about 4+ years of front-end direction.
     job1_header: |
-      CloudWorks LTD [Front-End Developer | 08 / 2015 - Present]
+      CloudWorks LTD [Front-End Developer | 08 / 2015 - 05 / 2016]
     job1_description: |
       Developing a front-end for the administrative tool for Teamwork Retail system.
       Tech: Javascript, DurandalJS, RequireJS, Knockout, C# 4.0, SQL Server 2014, WCF
     job2_header: |
       Betsson Group [Front-End Developer | 10 / 2013 - 08 / 2015]
     job2_description: |
-      Was Front-End developer, part of payment team, that is developing payment system for Betsson Group web sites. That was few projects such as Payment Pages for multiple Betsson brands, Mobile Pages, Monitoring System for payments processing, Customer Activity Tracker, etc. All projects was on service base architecture. All projects was high loaded web resources so really required optimization skills.
+      Was Front-End developer, part of the payment team, that is developing a payment system for Betsson Group brands. That was few projects such as Payment Pages for multiple Betsson brands, Mobile Pages, Monitoring System for payments processing, Customer Activity Tracker, etc. All projects were using service-based architecture and were high loaded web resources, so required optimization skills.
       Tech: Javascript, AngularJS, EmberJS, HTML5, CSS3, Knockout, RequireJS, C# 4.5, SQL Server 2012, WCF, ASP.NET MVC
     job3_header: |
       CloudWorks LTD [Developer | 03 / 2011 - 09 / 2013]
     job3_description: |
-      Formed part of the Teamwork Retail development team, which was responsible of desktop POS mostly. That was retail system for USA customers, based on .NET stack, using MSSQL Server as DB. Mostly we were focused on payment system and credit cards processing.
+      Formed part of the Teamwork Retail development team, which was responsible for desktop POS mostly. That was a retail system for USA customers, based on .NET stack, using MSSQL Server as DB. Mostly we were focused on payment system and credit cards processing.
       Tech: C# 4.0, SQL Server 2008, LINQ2SQL, OOP, WCF, Web Services
     job4_header: |
       DB Best Technologies [Developer | 06 / 2009 - 08 / 2010]
     job4_description: |
-      I was part of the team that is developing web sites based on ASP.NET Web Form\C#, MS SQL Server. Mostly that was sites in education area, all sites were finished and met the expected deadlines. Later we were developing win application based on .NET stack and small news portal on PHP.
+      I was part of the team that is developing websites based on ASP.NET Web Form\C#, MS SQL Server. Mostly that was sites in the education area, all sites were finished and met the expected deadlines. Later we were developing win application based on .NET stack and small news portal on PHP.
     time: 0
     errors: 0.00
   qualities:
@@ -73,6 +78,6 @@ default: &default
     errors: 0.04
   contacts:
     text: |
-      (Contacts, profiles)
-    time: 70
-    errors: 0.04
+      If you have any questions or would just want to chat or talk - here are my contacts:
+    time: 0
+    errors: 0.00

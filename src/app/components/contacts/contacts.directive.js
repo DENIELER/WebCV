@@ -1,7 +1,7 @@
 'use strict';
 
 class ContactsDirective {
-	constructor ($timeout, ScrollService) {
+	constructor ($timeout, ScrollService, StyleUtilsService, CONTACTS_TEXT) {
 
 		this.templateUrl = 'app/components/contacts/contacts.html';
         this.restrict = 'E';
@@ -9,13 +9,16 @@ class ContactsDirective {
         this.scope = {}
 
         this.$timeout = $timeout;
-        
+
         this.scroll = ScrollService;
+        this.styleUtils = StyleUtilsService;
+
+        this.CONTACTS_TEXT = CONTACTS_TEXT;
 
         this.constants = {
           moduleId: '#contacts',
-          textareaId: '#skillsTextarea',
-				
+          contactsTextarea: '#contactsTextarea',
+
           events: {
             start: 'startContactsAnimation',
 						finish: 'contactsAnimationFinished'
@@ -28,12 +31,17 @@ class ContactsDirective {
     self.$scope = scope;
     self.element = element;
 
+    const { browserHeight } = self.styleUtils.getBrowserSize();
+
     self.$scope.$on(self.constants.events.start, function () {
       self.showModule();
 
       self.$timeout(() => self.startTyping(), 1000)
-        // .then(() => self.showScrollIcon(element))
-    		.then(() => self.$scope.$emit(self.constants.events.finish));
+        .then(() => self.showBlock('#contacts-card'))
+        .then(() => self.showBlock('#greetings'))
+        .then(() => self.$scope.$emit(self.constants.events.finish, {
+          scrollUpTo: element.prop('clientHeight') - browserHeight + element.prop('offsetTop')
+        }));
     });
   }
 
@@ -41,23 +49,33 @@ class ContactsDirective {
     this.element.css('opacity', '1');
   }
 
+  showBlock (blockElementId) {
+    angular.element(blockElementId).css('opacity', '1');
+  }
+
   startTyping (element) {
     var self = this;
 
-    // return new Promise(
-    //   function (resolve, reejct) {
-				// self.element.find(self.constants.textareaId)
-    //     .typetype(SKILLS_TEXT.text, {
-    //         t: SKILLS_TEXT.time,
-    //         e: SKILLS_TEXT.errors,
+    var CONTACTS_TEXT = self.CONTACTS_TEXT;
+    const textArea = self.element.find(self.constants.contactsTextarea);
 
-    //         callback: function () {
-    //             resolve();
-    //         }
-    //     });
-    //   }
-    // );
-    return Promise.resolve();
+    //reset height of textarea to support multiple devices
+    self.styleUtils.calculateAndSetTextareaHeight(textArea, CONTACTS_TEXT.text);
+
+    return new Promise(
+      function (resolve, reejct) {
+        textArea
+        .typetype(CONTACTS_TEXT.text, {
+            t: CONTACTS_TEXT.time,
+            e: CONTACTS_TEXT.errors,
+
+            callback: function () {
+              textArea.attr('readonly', 'readonly');
+              resolve();
+            }
+        });
+      }
+    );
   }
 
   showBlock (blockElementId) {
@@ -72,12 +90,12 @@ class ContactsDirective {
       	.css('opacity', '1');
   }
 
-	static directiveFactory($timeout, ScrollService){
-		ContactsDirective.instance = new ContactsDirective($timeout, ScrollService);
+	static directiveFactory($timeout, ScrollService, StyleUtilsService, CONTACTS_TEXT){
+		ContactsDirective.instance = new ContactsDirective($timeout, ScrollService, StyleUtilsService, CONTACTS_TEXT);
 		return ContactsDirective.instance;
 	}
 }
 
-ContactsDirective.directiveFactory.$inject = ['$timeout', 'ScrollService'];
+ContactsDirective.directiveFactory.$inject = ['$timeout', 'ScrollService', 'StyleUtilsService', 'CONTACTS_TEXT'];
 
 export default ContactsDirective;
