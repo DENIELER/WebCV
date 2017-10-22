@@ -174,7 +174,7 @@ class ScrollService {
         const moveEndTouchPosition = e.touches
           ? e.touches[0].clientY
           : e.originalEvent.touches[0].clientY;
-        delta = moveEndTouchPosition - self.moveStartTouchPosition;
+        delta = (moveEndTouchPosition - self.moveStartTouchPosition)/120;
       }
       self.scrollDelta = delta;
 
