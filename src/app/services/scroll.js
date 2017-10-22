@@ -66,10 +66,18 @@ class ScrollService {
 
   preventScroll () {
     if (this.$window.addEventListener) // older FF
+    {
       this.$window.addEventListener('DOMMouseScroll', this._preventDefault.bind(this), false);
+      this.$window.addEventListener('touchstart', this._preventDefault.bind(this), false);
+      this.$window.addEventListener('touchmove', this._preventDefault.bind(this), false);
+    }
 
     if (this.$window.removeEventListener) // older FF
+    {
       this.$window.removeEventListener('DOMMouseScroll', this._scrollHandler.bind(this), false);
+      this.$window.removeEventListener('touchstart', this._touchStartHandler.bind(this), false);
+      this.$window.removeEventListener('touchmove', this._scrollHandler.bind(this), false);
+    }
 
     this.$window.onwheel = this._preventDefault.bind(this); // modern standard
     this.$window.onmousewheel = this.$document.context.onmousewheel = this._preventDefault.bind(this); // older browsers, IE
@@ -81,14 +89,23 @@ class ScrollService {
 
   allowScroll (topScrollLimit, bottomScrollLimit) {
     if (this.$window.removeEventListener) // older FF
+    {
       this.$window.removeEventListener('DOMMouseScroll', this._preventDefault.bind(this), false);
+      this.$window.removeEventListener('touchstart', this._preventDefault.bind(this), false);
+      this.$window.removeEventListener('touchmove', this._preventDefault.bind(this), false);
+    }
 
     if (this.$window.addEventListener) // older FF
+    {
       this.$window.addEventListener('DOMMouseScroll', this._scrollHandler.bind(this, topScrollLimit, bottomScrollLimit), false);
+      this.$window.addEventListener('touchstart', this._touchStartHandler.bind(this, topScrollLimit, bottomScrollLimit), false);
+      this.$window.addEventListener('touchmove', this._scrollHandler.bind(this, topScrollLimit, bottomScrollLimit), false);
+    }
 
     this.$window.onmousewheel = this.$document.context.onmousewheel = this._scrollHandler.bind(this, topScrollLimit, bottomScrollLimit);
     this.$window.onwheel = null;
     this.$window.ontouchmove = null;
+
     this.$document.context.onkeydown = this._scrollHandlerForScrollKeys.bind(this, topScrollLimit, bottomScrollLimit);
 
     console.log('Scroll: Allowed scroll');
@@ -97,7 +114,7 @@ class ScrollService {
   getScrollDirection () {
     var direction;
 
-    if (this.scrollDelta > 0) {
+    if (this.scrollDelta >= 0) {
       direction = this.scrollDirection.up;
     } else {
       direction = this.scrollDirection.down;
@@ -153,6 +170,11 @@ class ScrollService {
            * Also, delta is multiple of 3.
            */
           delta = -e.detail/3;
+      } else if (e.touches || e.originalEvent.touches) {
+        const moveEndTouchPosition = e.touches
+          ? e.touches[0].clientY
+          : e.originalEvent.touches[0].clientY;
+        delta = moveEndTouchPosition - self.moveStartTouchPosition;
       }
       self.scrollDelta = delta;
 
@@ -164,6 +186,14 @@ class ScrollService {
     }
 
     self.scrollBlocked = true;
+  }
+
+  _touchStartHandler (topScrollLimit, bottomScrollLimit, e) {
+    var self = this;
+
+    self.moveStartTouchPosition = e.touches
+      ? e.touches[0].clientY
+      : e.originalEvent.touches[0].clientY;
   }
 
   _scrollHandlerForScrollKeys (e) {
