@@ -182,7 +182,7 @@ class ScrollService {
 
       self.$timeout(() => {
         self.scrollBlocked = false;
-      }, 300);
+      }, 50);
     }
 
     self.scrollBlocked = true;
@@ -214,7 +214,7 @@ class ScrollService {
 
       self.$timeout(() => {
         self.scrollBlocked = false;
-      }, 300);
+      }, 50);
     }
 
     self.scrollBlocked = true;
