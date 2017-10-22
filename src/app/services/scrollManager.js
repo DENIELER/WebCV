@@ -29,14 +29,20 @@ class ScrollManager {
   }
 
   scrollModuleHandler (topScrollLimit, bottomScrollLimit, callback, e) {
-    var scrollTop = window.scrollY;
+    const scrollTop = window.scrollY;
 
+    const self = this;
+    const scrollDirection = self.scroll.getScrollDirection();
     if (scrollTop > topScrollLimit && scrollTop < bottomScrollLimit) {
       console.log('Blocked module handler:', topScrollLimit, bottomScrollLimit, scrollTop)
       return;
     }
 
-    const self = this;
+    if (scrollDirection === self.scrollDirection.up) {
+      console.log('Scroll top not blocking');
+      return;
+    }
+
     const isLastSection = self._isLastSection(scrollTop, self.sections)
     if (isLastSection) {
       console.log('Last section detected. Scroll events are not firing.')
@@ -51,8 +57,6 @@ class ScrollManager {
     console.info('ScrollManager: Scroll event');
 
     self._unbindScroll();
-
-    var scrollDirection = self.scroll.getScrollDirection();
 
     // if (scrollDirection === self.scrollDirection.up) {
     //   self._scrollTop()
