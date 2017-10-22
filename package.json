@@ -6,6 +6,7 @@
     "babel-polyfill": "^6.2.0"
   },
   "scripts": {
+    "build": "gulp build",
     "test": "gulp test",
     "start": "gulp serve",
     "install_bower": "./node_modules/.bin/bower install"
