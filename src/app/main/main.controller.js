@@ -29,11 +29,19 @@ class MainCtrl {
     .wait('waitForScroll', self.scrollManager)
     .run();
 
-    self.$scope.$on('contactsAnimationFinished', function () {
-      const scrollIcons = document.getElementsByClassName('scroll-icon-container')
-      Array.from(scrollIcons).forEach(function(element) {
+    self.$scope.$on('contactsAnimationFinished', _ => {
+      // const scrollIcons = document.getElementsByClassName('scroll-icon-container')
+      const scrollIcons = document.getElementsByClassName('icon-circle-down')
+      Array.from(scrollIcons).forEach(element => {
         element.innerHTML = '';
       });
+
+      window.setTimeout(_ => {
+        const scrollIconContainers = document.getElementsByClassName('scroll-icon-container')
+        Array.from(scrollIconContainers).forEach(element => {
+          element.style.height = '50px';
+        });
+      }, 1000)
     });
   }
 }

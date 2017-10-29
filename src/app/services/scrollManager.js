@@ -18,7 +18,6 @@ class ScrollManager {
   }
 
   waitForScroll (callback, scrollUpTo) {
-    console.log('Arguments', scrollUpTo)
     var self = this;
 
     document.body.style.overflow = 'auto';
@@ -34,29 +33,26 @@ class ScrollManager {
     const self = this;
     const scrollDirection = self.scroll.getScrollDirection();
     if (scrollTop > topScrollLimit && scrollTop < bottomScrollLimit) {
-      console.log('Blocked module handler:', topScrollLimit, bottomScrollLimit, scrollTop)
+      console.log('ScrollManager: Blocked scroll handler.')
       return;
     }
 
     if (scrollDirection === self.scrollDirection.up) {
-      console.log('Scroll top not blocking');
+      console.log('ScrollManager: During scroll top blocked scroll handler.');
       return;
     }
 
     const isLastSection = self._isLastSection(scrollTop, self.sections)
     if (isLastSection) {
-      console.log('Last section detected. Scroll events are not firing.')
+      console.log('ScrollManager: Last section detected. Blocked scroll handler.')
       return;
     }
 
-    console.log('Passed event:', scrollTop, e, bottomScrollLimit)
-
     document.body.style.overflow = '';
   	this.scroll.preventScroll();
-
-    console.info('ScrollManager: Scroll event');
-
     self._unbindScroll();
+
+    console.info('ScrollManager: Scroll event trigger fired.');
 
     // if (scrollDirection === self.scrollDirection.up) {
     //   self._scrollTop()
@@ -71,34 +67,28 @@ class ScrollManager {
     if (scrollToSection)
     {
       if (self.nextSection && scrollToSection.element === self.nextSection.element) {
+        console.info('ScrollManager: Scroll to next section: ', self.nextSection);
+
         self._scrollToElement(scrollToSection)
         .then(() => callback());
 
         self._setNextSection(scrollToSection, self.sections);
       } else {
         self._scrollToElement(scrollToSection)
-        .then(self._bindScroll.bind(self, callback))
-        .then(() => {
-          self.scroll.allowScroll();
-        });
       }
-    } else {
-      Promise.resolve()
-      .then(self._bindScroll.bind(self, callback))
-      .then(() => {
-        self.scroll.allowScroll();
-      });
     }
     // }
   }
 
   _bindScroll (topScrollLimit, bottomScrollLimit, callback) {
-    var eventHandler = this.scrollModuleHandler.bind(this, topScrollLimit, bottomScrollLimit, callback);
-    this.scroll.addScrollHandler(eventHandler);
+    console.log('ScrollManager: Bind scroll event')
+    this.onScrollEventHandler = this.scrollModuleHandler.bind(this, topScrollLimit, bottomScrollLimit, callback);
+    this.scroll.addScrollHandler(this.onScrollEventHandler);
   }
 
   _unbindScroll () {
-    this.scroll.removeScrollHandler();
+    console.log('ScrollManager: Unbind scroll event')
+    this.scroll.removeScrollHandler(this.onScrollEventHandler);
   }
 
   _getSectionPositions () {
@@ -115,7 +105,7 @@ class ScrollManager {
     sections.forEach(x => {
       var sectionElement = angular.element('#' + x)[0];
 
-      console.log('Section:', x, sectionElement.offsetTop, sectionElement.offsetHeight)
+      console.log('ScrollManager: Section - ', x, sectionElement.offsetTop, sectionElement.offsetHeight)
 
       if (sectionElement) {
         results.push({
@@ -154,7 +144,7 @@ class ScrollManager {
 
             return true;
           } else {
-            console.error('scrollManager: Scroll section was not found or user reached last section');
+            console.error('ScrollManager: Scroll section was not found or user reached last section');
             return false;
           }
         }

@@ -5,7 +5,7 @@ class LayoutCtrl {
   	this.$scope = $scope;
     this.scroll = ScrollService;
 
-    // this.scroll.preventScroll();
+    this.scroll.preventScroll();
     $timeout(() => this.scroll.scrollTop(ScrollTiming.top));
   }
 }

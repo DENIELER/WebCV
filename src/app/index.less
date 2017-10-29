@@ -15,7 +15,10 @@
   display: flex;
   justify-content: center;
 
+  height: 150px;
+
   opacity: 0;
+  transition: all 1s ease-in-out;
 }
 
 .icon-circle-down {
@@ -26,7 +29,7 @@
 	opacity: 0.1;
 
 	animation: scroll-down-fade 1.5s ease-in;
-	animation-iteration-count: infinite;
+  animation-iteration-count: infinite;
 }
 
 @keyframes scroll-down-fade {
