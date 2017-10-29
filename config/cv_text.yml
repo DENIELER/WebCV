@@ -12,9 +12,9 @@ default: &default
     errors: 0.00
   typeform:
     header: |
-      Typeform is a design-oriented fast-growing tech start-up. I worked there as a Senior Software engineer first in the team which was responsible for growth metrics and later in core product teams (payments, subscriptions, platform. etc.).
+      Typeform is a design-oriented fast-growing tech start-up. First, I worked there as a Senior Software engineer in the team which was responsible for growth metrics then I joined core product teams (payments, subscriptions, platform. etc.).
     content: |
-      In growth team using our analytical and entrepreneur skills, we've reached more than 36% of the company's yearly revenue growth.
+      In growth team we've increased company revenue by 36%, using our analytical, entrepreneur skills in A/B testing.
 
       In core product teams I'm working as a Front-End oriented full-stack developer. Mostly we are using Javascript with React and Redux-based state management on the Front-End and PHP or Go on the Back-End.
 
