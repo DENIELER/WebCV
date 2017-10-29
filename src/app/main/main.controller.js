@@ -21,9 +21,6 @@ class MainCtrl {
     .broadcast('startTypeformExperienceAnimation')
     .wait('typeformExperienceAnimationFinished')
     .wait('waitForScroll', self.scrollManager)
-    // .broadcast('startSkillsAnimation')
-    // .wait('skillsAnimationFinished')
-    // .wait('waitForScroll', self.scrollManager)
     .broadcast('startExperienceAnimation')
     .wait('experienceAnimationFinished')
     .wait('waitForScroll', self.scrollManager)
@@ -31,10 +28,6 @@ class MainCtrl {
     .wait('contactsAnimationFinished')
     .wait('waitForScroll', self.scrollManager)
     .run();
-//    .waitScrollToElement('beginning')
-//    .execEvent('startBeginningAnimation')
-//    .waitEvent('beginningAnimationFinished')
-//    .waitScrollToElement('firstSteps');
 
     self.$scope.$on('contactsAnimationFinished', function () {
       const scrollIcons = document.getElementsByClassName('scroll-icon-container')

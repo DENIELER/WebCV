@@ -165,7 +165,7 @@ class ScrollService {
       var delta;
       if (e.wheelDelta) { /* IE/Opera. */
           delta = e.wheelDelta/120;
-      } else if (event.detail) { /** Mozilla case. */
+      } else if (e.detail) { /** Mozilla case. */
           /** In Mozilla, sign of delta is different than in IE.
            * Also, delta is multiple of 3.
            */
